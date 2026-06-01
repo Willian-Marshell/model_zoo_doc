@@ -90,9 +90,24 @@ RDK S100 / S600 系列板卡专用分支，需系统版本 RDK OS >= 4.0.5。
 
 </DocScope>
 
-## 各平台详细使用说明
+## 详细使用说明
+
+<DocScope products="RDK-X3">
 
 - RDK X3 使用说明请参考 [2 RDK X3 Model Zoo 使用说明](./rdk_x3_guide.md)
+
+</DocScope>
+
+<DocScope products="RDK-X5">
+
 - RDK X5 使用说明请参考 [2 RDK X5 Model Zoo 使用说明](./rdk_x5_guide.md)
+
+</DocScope>
+
+<DocScope products="RDK-S100,RDK-S600">
+
 - RDK S 系列使用说明请参考 [2 RDK S Model Zoo 使用说明](./rdk_s_guide.md)
+
+</DocScope>
+
 - 推理接口参考请查阅 [3 推理接口参考](./infer_api_ref.md)

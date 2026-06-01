@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # 4.1.1 Model Zoo Overview
 
+```mdx-code-block
+import DocScope from '@site/src/components/DocScope';
+```
+
 ## Product Introduction
 
 RDK Model Zoo is a collection of BPU (Brain Processing Unit) model examples and tools provided by D-Robotics for the RDK series development boards, designed for model deployment and intelligent application development, helping developers quickly get started with BPU and run through the model inference workflow.
@@ -35,6 +39,8 @@ Model Zoo provides corresponding branches by hardware platform. Directory struct
 
 ## Branch Descriptions
 
+<DocScope products="RDK-X5">
+
 ### rdk_x5
 
 The main delivery branch for RDK X5, requiring system version RDK OS >= 3.5.0.
@@ -56,6 +62,10 @@ The legacy RDK X5 demo archive branch, used only for historical compatibility an
 
 :::
 
+</DocScope>
+
+<DocScope products="RDK-X3">
+
 ### rdk_x3
 
 Dedicated branch for RDK X3 devices.
@@ -72,6 +82,10 @@ Dedicated branch for RDK X3 devices.
 
 Some demos support Jupyter Notebook interactive experience.
 
+</DocScope>
+
+<DocScope products="RDK-S100,RDK-S600">
+
 ### rdk_s
 
 Dedicated branch for RDK S100 / S600 series boards, requiring system version RDK OS >= 4.0.5.
@@ -80,9 +94,27 @@ Dedicated branch for RDK S100 / S600 series boards, requiring system version RDK
 - The inference interface is `hbm_runtime` (same name as RDK X5, different underlying dependency: S series is based on `libhbucp`, X5 is based on `libdnn`)
 - Legacy demos for the RDK S series are retained in the [RDK Model Zoo S](https://github.com/d-Robotics/rdk_model_zoo_s) repository
 
-## Detailed Usage Guides by Platform
+</DocScope>
+
+## Detailed Usage Guides
+
+<DocScope products="RDK-X3">
 
 - RDK X3 usage guide: [2 RDK X3 Model Zoo Usage Guide](./rdk_x3_guide.md)
+
+</DocScope>
+
+<DocScope products="RDK-X5">
+
 - RDK X5 usage guide: [2 RDK X5 Model Zoo Usage Guide](./rdk_x5_guide.md)
+
+</DocScope>
+
+<DocScope products="RDK-S100,RDK-S600">
+
 - RDK S Series usage guide: [2 RDK S Model Zoo Usage Guide](./rdk_s_guide.md)
+
+</DocScope>
+
 - Inference interface reference: [3 Inference Interface Reference](./infer_api_ref.md)
+
