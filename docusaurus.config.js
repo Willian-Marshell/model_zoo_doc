@@ -137,14 +137,16 @@ const config = {
     ],
   ],
   plugins: [
+    require.resolve("./src/plugins/sidebar-scope-config-plugin"),
     [
       "docusaurus-plugin-copy-page-button",
       {
-        placement: "toc",
-        enabledActions: ["copy", "view"],
+        // Match the requested dropdown actions in screenshot.
+        enabledActions: ["copy", "view", "claude"],
+        // Static .md routes are incompatible with OSS "append /index.html" rules.
+        generateMarkdownRoutes: false,
       },
     ],
-    require.resolve("./src/plugins/sidebar-scope-config-plugin"),
   ],
   markdown: {
     mermaid: true,
