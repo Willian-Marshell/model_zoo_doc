@@ -63,13 +63,13 @@ def download_image(session, url, save_path, error_list):
         # print(f"下载成功: {save_path}")
         return True
     except requests.exceptions.Timeout:
-        log_error(f"下载超时: {url}", error_list)
+        log_error(f"Download timed out: {url}", error_list)
     except requests.exceptions.RequestException as e:
-        log_error(f"下载失败: {url}, 错误: {e}", error_list)
+        log_error(f"Download failed: {url}, error: {e}", error_list)
     except IOError as e:
-        log_error(f"文件保存失败: {save_path}, 错误: {e}", error_list)
+        log_error(f"Failed to save file: {save_path}, error: {e}", error_list)
     except Exception as e:
-        log_error(f"下载 {url} 时发生未知错误: {e}", error_list)
+        log_error(f"Unknown error while downloading {url}: {e}", error_list)
     return False
 
 def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, executor, error_list):
@@ -81,7 +81,7 @@ def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, ex
         with open(md_path, 'r', encoding='utf-8') as f:
             content = f.read()
     except IOError as e:
-        log_error(f"读取文件失败: {md_path}, 错误: {e}", error_list)
+        log_error(f"Failed to read file: {md_path}, error: {e}", error_list)
         return
 
     images_to_download_info = {}
@@ -104,7 +104,7 @@ def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, ex
             # 2. 安全性检查：防止路径遍历攻击 (e.g., ../../..)
             #    我们拒绝任何包含 '..' 或以 '/' 开头的路径来写入文件系统
             if '..' in relative_image_path:
-                log_error(f"警告: 检测到不安全的图片路径 '{original_url}' (在 {md_path} 中)，已跳过。", error_list)
+                log_error(f"Warning: unsafe image path '{original_url}' in {md_path}; skipped.", error_list)
                 continue
 
             # 3. 构建 Markdown 链接路径和本地文件保存路径
@@ -114,7 +114,7 @@ def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, ex
             full_save_path = os.path.join(image_output_abs_dir, relative_image_path)
 
         except Exception as e:
-            log_error(f"警告: 解析 URL '{original_url}' (在 {md_path} 中) 失败: {e}，跳过。", error_list)
+            log_error(f"Warning: failed to parse URL '{original_url}' in {md_path}: {e}; skipped.", error_list)
             continue
 
         images_to_download_info[original_url] = {
@@ -139,7 +139,7 @@ def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, ex
             success = future.result()
             download_results[url] = success
         except Exception as exc:
-            log_error(f"文件 {md_path}: 图片 {url} 下载任务产生异常: {exc}", error_list)
+            log_error(f"File {md_path}: download task for image {url} raised an exception: {exc}", error_list)
             download_results[url] = False
 
     content_changed_flag = [False]
@@ -169,7 +169,7 @@ def process_markdown_file(md_path, image_output_abs_dir, pattern_re, session, ex
             with open(md_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
         except IOError as e:
-            log_error(f"写入文件失败: {md_path}, 错误: {e}", error_list)
+            log_error(f"Failed to write file: {md_path}, error: {e}", error_list)
 
 if __name__ == "__main__":
     error_logs = [] # 初始化错误日志列表
@@ -177,17 +177,17 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     image_output_abs = os.path.abspath(os.path.join(script_dir, STATIC_DIR_NAME, IMAGE_OUTPUT_SUBDIR))
 
-    print(f"统一图片输出目录: {image_output_abs}")
+    print(f"Image output directory: {image_output_abs}")
     os.makedirs(image_output_abs, exist_ok=True)
 
     all_md_file_paths = []
-    print("开始扫描 Markdown 文件...")
+    print("Scanning Markdown files...")
     for root_dir_name in MARKDOWN_ROOT_DIRS:
         markdown_root_abs = os.path.abspath(os.path.join(script_dir, root_dir_name))
         if not os.path.isdir(markdown_root_abs):
-            log_error(f"错误: Markdown 根目录 '{markdown_root_abs}' (来自配置 '{root_dir_name}') 不存在或不是一个目录。", error_logs)
+            log_error(f"Error: Markdown root directory '{markdown_root_abs}' (from config '{root_dir_name}') does not exist or is not a directory.", error_logs)
             continue
-        print(f"扫描目录: {markdown_root_abs}")
+        print(f"Scanning directory: {markdown_root_abs}")
         for dirpath, _, filenames in os.walk(markdown_root_abs):
             for filename in filenames:
                 if filename.endswith(".md"):
@@ -196,24 +196,24 @@ if __name__ == "__main__":
     total_md_files = len(all_md_file_paths)
 
     if total_md_files == 0:
-        print("未在指定目录中找到任何 Markdown 文件进行处理。")
+        print("No Markdown files found in the configured directories.")
         if error_logs: # 如果仅有目录不存在的错误
              with open(ERROR_LOG_FILE, "w", encoding="utf-8") as f_err:
                 for log_entry in error_logs:
                     f_err.write(log_entry + "\n")
-             print(f"发现错误，详情请见 {ERROR_LOG_FILE}。")
+             print(f"Errors found. See {ERROR_LOG_FILE} for details.")
         exit(0)
 
-    print(f"共找到 {total_md_files} 个 Markdown 文件待处理。")
+    print(f"Found {total_md_files} Markdown file(s) to process.")
 
-    with tqdm(total=total_md_files, desc="处理MD文件", unit="file") as progress_bar:
+    with tqdm(total=total_md_files, desc="Processing Markdown files", unit="file") as progress_bar:
         with requests.Session() as http_session:
             http_session.headers.update({
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
             })
             with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
                 for md_path in all_md_file_paths:
-                    progress_bar.set_description(f"处理中: {os.path.basename(md_path)}")
+                    progress_bar.set_description(f"Processing: {os.path.basename(md_path)}")
                     process_markdown_file(
                         md_path,
                         image_output_abs,
@@ -227,14 +227,14 @@ if __name__ == "__main__":
     if error_logs:
         try:
             with open(ERROR_LOG_FILE, "w", encoding="utf-8") as f_err:
-                f_err.write("--- 错误日志 ---\n")
+                f_err.write("--- Error log ---\n")
                 for log_entry in error_logs:
                     f_err.write(log_entry + "\n")
-            print(f"处理完成。发现 {len(error_logs)} 个错误，详情请见 {ERROR_LOG_FILE}。")
+            print(f"Done. Found {len(error_logs)} error(s). See {ERROR_LOG_FILE} for details.")
         except IOError as e:
-            print(f"致命错误: 无法写入错误日志文件 {ERROR_LOG_FILE}。错误: {e}")
-            print("以下是收集到的错误信息:")
+            print(f"Fatal error: unable to write error log file {ERROR_LOG_FILE}. Error: {e}")
+            print("Collected error messages:")
             for log_entry in error_logs:
                 print(log_entry)
     else:
-        print("🎉 所有处理完成，未报告错误。")
+        print("All processing completed with no reported errors.")
