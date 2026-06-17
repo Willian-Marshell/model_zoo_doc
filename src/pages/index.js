@@ -38,7 +38,6 @@ export default function HomeRedirect() {
       typeof window !== "undefined" ? removeTrailingSlash(window.location.pathname) : "";
     const normalizedTargetPath = removeTrailingSlash(`${localePrefix}${targetDocPath}`);
 
-    // Use hard redirect to ensure URL path becomes the target doc path on static hosting.
     if (typeof window !== "undefined" && normalizedPathname !== normalizedTargetPath) {
       window.location.replace(target);
     }

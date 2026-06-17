@@ -12,6 +12,12 @@ import {
   resolveCanonicalProductKeyForMatrix,
   resolveProductForVersion,
 } from './doc-scope-product-utils.js';
+import {
+  docScopeSearchMatches,
+  isModelZooIntroPath,
+  mergeDocScopeSearch,
+  shouldAttachDocScopeQuery,
+} from '@site/src/utils/doc-scope-query';
 
 export { PRODUCT_VERSION_MATRIX, VERSION_PRODUCT_MATRIX } from './doc-scope-matrix.js';
 
@@ -160,14 +166,6 @@ function replaceSearch(history, location, nextSearch) {
   });
 }
 
-function normalizePathname(pathname) {
-  const p = String(pathname || '');
-  if (p.length > 1 && p.endsWith('/')) {
-    return p.slice(0, -1);
-  }
-  return p;
-}
-
 export function DocScopeFilterProvider({ children }) {
   const location = useLocation();
   const history = useHistory();
@@ -177,29 +175,6 @@ export function DocScopeFilterProvider({ children }) {
   const hasBuildScope = Boolean(
     buildScope?.enabled && buildScope?.product && buildScope?.version,
   );
-
-  useEffect(() => {
-    if (hasBuildScope) {
-      return;
-    }
-    const base = String(siteConfig?.baseUrl || '/');
-    const baseNoSlash = normalizePathname(base);
-    const pathnameNoSlash = normalizePathname(location.pathname);
-    const enRoot = normalizePathname(`${base}en/`);
-
-    // 仅在站点入口做默认中文兜底：
-    // /rdk_x_doc/ 或 /rdk_x_doc/en/ -> /rdk_x_doc/RDK
-    if (pathnameNoSlash === baseNoSlash || pathnameNoSlash === enRoot) {
-      history.replace(`${base}RDK${location.search}${location.hash}`);
-    }
-  }, [
-    hasBuildScope,
-    history,
-    location.pathname,
-    location.search,
-    location.hash,
-    siteConfig?.baseUrl,
-  ]);
 
   const { version, product: productFromUrl } = useMemo(() => {
     if (hasBuildScope) {
@@ -222,6 +197,57 @@ export function DocScopeFilterProvider({ children }) {
       ? productFromUrl
       : def.product;
   }, [productFromUrl, def.product]);
+
+  useEffect(() => {
+    if (hasBuildScope) {
+      return;
+    }
+    const baseUrl = siteConfig?.baseUrl || '/';
+
+    if (!shouldAttachDocScopeQuery(location.pathname, baseUrl)) {
+      return;
+    }
+
+    if (isModelZooIntroPath(location.pathname, baseUrl)) {
+      const params = new URLSearchParams(
+        location.search?.startsWith('?') ? location.search.slice(1) : location.search || '',
+      );
+      const hasScopeParams = params.has('v') || params.has('p');
+      if (hasScopeParams) {
+        params.delete('v');
+        params.delete('p');
+        const nextSearch = params.toString() ? `?${params.toString()}` : '';
+        history.replace({
+          pathname: location.pathname,
+          search: nextSearch,
+          hash: location.hash,
+          state: location.state,
+        });
+      }
+      return;
+    }
+
+    const nextSearch = mergeDocScopeSearch(location.search, version, product);
+
+    if (!docScopeSearchMatches(location.search, version, product)) {
+      history.replace({
+        pathname: location.pathname,
+        search: nextSearch,
+        hash: location.hash,
+        state: location.state,
+      });
+    }
+  }, [
+    hasBuildScope,
+    history,
+    location.pathname,
+    location.search,
+    location.hash,
+    location.state,
+    siteConfig?.baseUrl,
+    version,
+    product,
+  ]);
 
   useEffect(() => {
     if (hasBuildScope) {

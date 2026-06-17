@@ -261,8 +261,8 @@ function processDirectory(targetDir, label) {
 
     console.log(`\n${path.relative(REPO_ROOT, dir)} (${plans.length} rename(s))`);
     plans.forEach((p) => {
-      const icon = p.type === "dir" ? "📁" : "📄";
-      console.log(`  ${icon} ${p.oldName} -> ${p.newName}`);
+      const typeLabel = p.type === "dir" ? "[dir]" : "[file]";
+      console.log(`  ${typeLabel} ${p.oldName} -> ${p.newName}`);
     });
 
     twoPhaseRename(plans);
