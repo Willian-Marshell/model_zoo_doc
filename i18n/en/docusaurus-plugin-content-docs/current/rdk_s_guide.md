@@ -189,14 +189,29 @@ bash run.sh
 
 | Category | Model | Sample Directory | Supported Platforms |
 | :--- | :--- | :--- | :--- |
+| Vision Multi-task | Ultralytics YOLO (YOLOv5u / YOLOv8 / YOLOv10 / YOLO11 / YOLO12) | `samples/vision/ultralytics_yolo` | S100 / S100P |
+| Vision Multi-task | YOLO26 | `samples/vision/ultralytics_yolo26` | S100 / S100P / S600 |
 | Object Detection | YOLOv5x | `samples/vision/yolov5` | S100 / S600 |
-| | YOLO11 | `samples/vision/yolo11` | S100 / S600 |
+| Object Detection | YOLO11 | `samples/vision/yolo11` | S100 / S600 |
+| Object Detection | YOLOv13 (iMoonLab) | `samples/vision/yolov13_imoonlab` | S100 |
+| Multi-Object Tracking | ByteTrack | `samples/vision/bytetrack` | S100 / S100P / S600 |
 | Instance Segmentation | YOLO11-Seg | `samples/vision/yolo11_seg` | S100 / S600 |
-| | YOLOe11-Seg | `samples/vision/yoloe11_seg` | S100 |
+| Instance Segmentation | YOLOe11-Seg (Prompt-Free) | `samples/vision/yoloe11_seg` | S100 |
 | Pose Estimation | YOLO11-Pose | `samples/vision/yolo11_pose` | S100 / S600 |
 | Image Classification | ResNet18 | `samples/vision/resnet18` | S100 / S600 |
-| | MobileNetV2 | `samples/vision/mobilenetv2` | S100 / S600 |
+| Image Classification | ResNet50 | `samples/vision/resnet50` | S100 / S600 |
+| Image Classification | ResNet152 | `samples/vision/resnet152` | S100 / S600 |
+| Image Classification | MobileNetV1 | `samples/vision/mobilenetv1` | S100 |
+| Image Classification | MobileNetV2 | `samples/vision/mobilenetv2` | S100 / S600 |
+| Image Classification | MobileNetV3 | `samples/vision/mobilenetv3` | S100 |
+| Image Classification | MobileNetV4 | `samples/vision/mobilenetv4` | S100 |
+| Image Classification | EfficientNet-Lite | `samples/vision/efficientnet` | S100 |
+| Image Classification | ViT | `samples/vision/vit` | S100 |
+| Image Classification | 3D ResNet (Video Action) | `samples/vision/3dresnet` | S100 |
 | Semantic Segmentation | UnetMobileNet | `samples/vision/unetmobilenet` | S100 / S600 |
+| Monocular Depth Estimation | Depth Anything V2 | `samples/vision/depth_anything_v2` | S100 |
+| Vision Encoder | SigLIP | `samples/vision/siglip` | S100 / S100P |
+| Point Cloud Segmentation | PointNet | `samples/vision/pointnet` | S100 |
 | Lane Detection | LaneNet | `samples/vision/lanenet` | S100 |
 | Text Recognition | PaddleOCR | `samples/vision/paddle_ocr` | S100 |
 
@@ -204,7 +219,14 @@ bash run.sh
 
 | Category | Model | Sample Directory | Supported Platforms |
 | :--- | :--- | :--- | :--- |
-| Speech Recognition | ASR | `samples/speech/asr` | S100 / S600 |
+| Speech Recognition | ASR (Wav2Vec2) | `samples/speech/asr` | S100 / S600 |
+| Keyword Spotting | KWS (MDTC) | `samples/speech/kws` | S100 |
+
+### Embodied AI / Robot Policy (VLA)
+
+| Category | Model | Sample Directory | Supported Platforms |
+| :--- | :--- | :--- | :--- |
+| Robot Policy | ACT (Action Chunking Transformer) | `samples/vla/act` | S100 |
 
 ## Shared Utilities (utils/)
 
