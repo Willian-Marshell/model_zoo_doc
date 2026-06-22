@@ -189,14 +189,29 @@ bash run.sh
 
 | 类别 | 模型 | Sample 目录 | 支持平台 |
 | :--- | :--- | :--- | :--- |
+| 视觉多任务 | Ultralytics YOLO（YOLOv5u / YOLOv8 / YOLOv10 / YOLO11 / YOLO12） | `samples/vision/ultralytics_yolo` | S100 / S100P |
+| 视觉多任务 | YOLO26 | `samples/vision/ultralytics_yolo26` | S100 / S100P / S600 |
 | 目标检测 | YOLOv5x | `samples/vision/yolov5` | S100 / S600 |
 | 目标检测 | YOLO11 | `samples/vision/yolo11` | S100 / S600 |
+| 目标检测 | YOLOv13（iMoonLab） | `samples/vision/yolov13_imoonlab` | S100 |
+| 多目标跟踪 | ByteTrack | `samples/vision/bytetrack` | S100 / S100P / S600 |
 | 实例分割 | YOLO11-Seg | `samples/vision/yolo11_seg` | S100 / S600 |
-| 实例分割 | YOLOe11-Seg | `samples/vision/yoloe11_seg` | S100 |
+| 实例分割 | YOLOe11-Seg（Prompt-Free） | `samples/vision/yoloe11_seg` | S100 |
 | 姿态估计 | YOLO11-Pose | `samples/vision/yolo11_pose` | S100 / S600 |
 | 图像分类 | ResNet18 | `samples/vision/resnet18` | S100 / S600 |
+| 图像分类 | ResNet50 | `samples/vision/resnet50` | S100 / S600 |
+| 图像分类 | ResNet152 | `samples/vision/resnet152` | S100 / S600 |
+| 图像分类 | MobileNetV1 | `samples/vision/mobilenetv1` | S100 |
 | 图像分类 | MobileNetV2 | `samples/vision/mobilenetv2` | S100 / S600 |
+| 图像分类 | MobileNetV3 | `samples/vision/mobilenetv3` | S100 |
+| 图像分类 | MobileNetV4 | `samples/vision/mobilenetv4` | S100 |
+| 图像分类 | EfficientNet-Lite | `samples/vision/efficientnet` | S100 |
+| 图像分类 | ViT | `samples/vision/vit` | S100 |
+| 图像分类 | 3D ResNet（视频动作识别） | `samples/vision/3dresnet` | S100 |
 | 语义分割 | UnetMobileNet | `samples/vision/unetmobilenet` | S100 / S600 |
+| 单目深度估计 | Depth Anything V2 | `samples/vision/depth_anything_v2` | S100 |
+| 视觉编码器 | SigLIP | `samples/vision/siglip` | S100 / S100P |
+| 点云分割 | PointNet | `samples/vision/pointnet` | S100 |
 | 车道线检测 | LaneNet | `samples/vision/lanenet` | S100 |
 | 文字识别 | PaddleOCR | `samples/vision/paddle_ocr` | S100 |
 
@@ -204,7 +219,14 @@ bash run.sh
 
 | 类别 | 模型 | Sample 目录 | 支持平台 |
 | :--- | :--- | :--- | :--- |
-| 语音识别 | ASR | `samples/speech/asr` | S100 / S600 |
+| 语音识别 | ASR（Wav2Vec2） | `samples/speech/asr` | S100 / S600 |
+| 关键词检测 | KWS（MDTC） | `samples/speech/kws` | S100 |
+
+### 具身智能 / 机器人策略（VLA）
+
+| 类别 | 模型 | Sample 目录 | 支持平台 |
+| :--- | :--- | :--- | :--- |
+| 动作策略 | ACT（Action Chunking Transformer） | `samples/vla/act` | S100 |
 
 ## 共享工具（utils/）
 
