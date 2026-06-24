@@ -55,6 +55,6 @@ sidebar_position: 2
 | yolov13x | 640x640 | 80 | 308.4 | 3.2 | 609.2 | 3.3 | 5 | 64.0 | 199.2 | 0.551 | 0.526 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5) |
 | yolo26n_detect | 640x640 | 80 | 11.6 | 86.3 | 19.1 | 104.3 | - | - | - | 0.319 | 0.284 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
 | yolo26s_detect | 640x640 | 80 | 20.9 | 47.7 | 37.8 | 52.8 | - | - | - | 0.395 | 0.357 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
-| yolo26m_detect | 640x640 | 80 | 51.1 | 24.8 | 76.1 | 26.1 | - | - | - | 0.442 | 0.413 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
-| yolo26l_detect | 640x640 | 80 | 40.1 | 19.5 | 98.0 | 20.3 | - | - | - | 0.456 | 0.431 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
+| yolo26m_detect | 640x640 | 80 | 40.1 | 24.8 | 76.1 | 26.1 | - | - | - | 0.442 | 0.413 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
+| yolo26l_detect | 640x640 | 80 | 51.1 | 19.5 | 98.0 | 20.3 | - | - | - | 0.456 | 0.431 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
 | yolo26x_detect | 640x640 | 80 | 103.3 | 9.6 | 202.0 | 9.8 | - | - | - | 0.484 | 0.438 | [GitHub](https://github.com/D-Robotics/rdk_model_zoo/tree/rdk_x5/samples/vision/ultralytics_yolo26) |
