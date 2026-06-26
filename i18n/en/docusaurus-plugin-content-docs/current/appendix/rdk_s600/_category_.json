@@ -1,9 +1,9 @@
 {
-  "label": "6.3 Benchmark",
+  "label": "6.4 Benchmark",
   "position": 1,
   "link": {
     "type": "generated-index",
     "slug": "/Appendix/rdk_s600",
-    "description": "RDK S600 Benchmark 汇总。"
+    "description": "Appendix of RDK S600 Benchmark."
   }
 }

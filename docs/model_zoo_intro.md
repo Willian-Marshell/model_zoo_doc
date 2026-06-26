@@ -79,7 +79,7 @@ RDK X3 设备专用分支。
 
 </DocScope>
 
-<DocScope versions=">=4.0.5" products="RDK S100">
+<DocScope versions=">=4.0.5" products="RDK-S100,RDK-S600">
 ### rdk_s
 
 RDK S100 / S600 系列板卡专用分支，需系统版本 RDK OS >= 4.0.5。

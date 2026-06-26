@@ -29,19 +29,36 @@ RDK S 系列的历史 demo 保留在 [RDK Model Zoo S](https://github.com/d-Robo
 rdk_model_zoo/
 |-- samples/
 |   |-- vision/                  # 视觉模型示例
-|   |   |-- lanenet/             # 车道线检测
-|   |   |-- mobilenetv2/         # 图像分类
-|   |   |-- paddle_ocr/          # OCR 文字识别
+|   |   |-- ultralytics_yolo/    # 检测 / 分割 / 姿态 / 分类（YOLOv5u~YOLO12）
+|   |   |-- ultralytics_yolo26/  # 检测 / 分割 / 姿态 / OBB / 分类（YOLO26）
+|   |   |-- yolov5/              # 目标检测
+|   |   |-- yolo11/              # 目标检测
+|   |   |-- yolo11_seg/          # 实例分割
+|   |   |-- yolo11_pose/         # 姿态估计
+|   |   |-- yoloe11_seg/         # 实例分割（prompt-free）
+|   |   |-- yolov13_imoonlab/    # 目标检测
+|   |   |-- bytetrack/           # 多目标跟踪
 |   |   |-- resnet18/            # 图像分类
+|   |   |-- resnet50/            # 图像分类
+|   |   |-- resnet152/           # 图像分类
+|   |   |-- mobilenetv1/         # 图像分类
+|   |   |-- mobilenetv2/         # 图像分类
+|   |   |-- mobilenetv3/         # 图像分类
+|   |   |-- mobilenetv4/         # 图像分类
+|   |   |-- efficientnet/        # 图像分类
+|   |   |-- vit/                 # 图像分类
+|   |   |-- 3dresnet/            # 视频动作分类
 |   |   |-- unetmobilenet/       # 语义分割
-|   |   |-- yolo11/              # YOLO11 检测
-|   |   |-- yolo11_pose/         # YOLO11 姿态估计
-|   |   |-- yolo11_seg/          # YOLO11 实例分割
-|   |   |-- yoloe11_seg/         # YOLOE11 实例分割
-|   |   |-- yolov5/              # YOLOv5 检测
-|   |   `-- ...
-|   `-- speech/                  # 语音模型示例
-|       `-- asr/                 # 语音识别
+|   |   |-- depth_anything_v2/   # 单目深度估计
+|   |   |-- siglip/              # VLM / VLA 视觉编码器
+|   |   |-- pointnet/            # 点云部件分割
+|   |   |-- lanenet/             # 车道线检测
+|   |   `-- paddle_ocr/          # OCR 文字检测与识别
+|   |-- speech/                  # 语音模型示例
+|   |   |-- asr/                 # 语音识别
+|   |   `-- kws/                 # 关键词检测
+|   `-- vla/                     # 具身智能 / 机器人策略
+|       `-- act/                 # Action Chunking Transformer
 |-- datasets/                    # 公共数据集与示例数据
 |-- docs/                        # 项目规范与参考文档
 |-- tools/                       # 转换/构建/辅助工具
@@ -189,7 +206,7 @@ bash run.sh
 
 | 类别 | 模型 | Sample 目录 | 支持平台 |
 | :--- | :--- | :--- | :--- |
-| 视觉多任务 | Ultralytics YOLO（YOLOv5u / YOLOv8 / YOLOv10 / YOLO11 / YOLO12） | `samples/vision/ultralytics_yolo` | S100 / S100P |
+| 视觉多任务 | Ultralytics YOLO（YOLOv5u / YOLOv8 / YOLOv9 / YOLOv10 / YOLO11 / YOLO12） | `samples/vision/ultralytics_yolo` | S100 / S100P / S600 |
 | 视觉多任务 | YOLO26 | `samples/vision/ultralytics_yolo26` | S100 / S100P / S600 |
 | 目标检测 | YOLOv5x | `samples/vision/yolov5` | S100 / S600 |
 | 目标检测 | YOLO11 | `samples/vision/yolo11` | S100 / S600 |
@@ -226,7 +243,7 @@ bash run.sh
 
 | 类别 | 模型 | Sample 目录 | 支持平台 |
 | :--- | :--- | :--- | :--- |
-| 动作策略 | ACT（Action Chunking Transformer） | `samples/vla/act` | S100 |
+| 动作策略 | ACT（Action Chunking Transformer） | `samples/vla/act` | S100 / S600 |
 
 ## 共享工具（utils/）
 

@@ -29,19 +29,36 @@ The `rdk_s` branch uses a standardized directory structure, organized by domain 
 rdk_model_zoo/
 |-- samples/
 |   |-- vision/                  # Vision model examples
-|   |   |-- lanenet/             # Lane detection
-|   |   |-- mobilenetv2/         # Image classification
-|   |   |-- paddle_ocr/          # OCR text recognition
+|   |   |-- ultralytics_yolo/    # Detection / Seg / Pose / CLS (YOLOv5u~YOLO12)
+|   |   |-- ultralytics_yolo26/  # Detection / Seg / Pose / OBB / CLS (YOLO26)
+|   |   |-- yolov5/              # Object detection
+|   |   |-- yolo11/              # Object detection
+|   |   |-- yolo11_seg/          # Instance segmentation
+|   |   |-- yolo11_pose/         # Pose estimation
+|   |   |-- yoloe11_seg/         # Instance segmentation (prompt-free)
+|   |   |-- yolov13_imoonlab/    # Object detection
+|   |   |-- bytetrack/           # Multi-object tracking
 |   |   |-- resnet18/            # Image classification
+|   |   |-- resnet50/            # Image classification
+|   |   |-- resnet152/           # Image classification
+|   |   |-- mobilenetv1/         # Image classification
+|   |   |-- mobilenetv2/         # Image classification
+|   |   |-- mobilenetv3/         # Image classification
+|   |   |-- mobilenetv4/         # Image classification
+|   |   |-- efficientnet/        # Image classification
+|   |   |-- vit/                 # Image classification
+|   |   |-- 3dresnet/            # Video action classification
 |   |   |-- unetmobilenet/       # Semantic segmentation
-|   |   |-- yolo11/              # YOLO11 detection
-|   |   |-- yolo11_pose/         # YOLO11 pose estimation
-|   |   |-- yolo11_seg/          # YOLO11 instance segmentation
-|   |   |-- yoloe11_seg/         # YOLOE11 instance segmentation
-|   |   |-- yolov5/              # YOLOv5 detection
-|   |   `-- ...
-|   `-- speech/                  # Speech model examples
-|       `-- asr/                 # Speech recognition
+|   |   |-- depth_anything_v2/   # Monocular depth estimation
+|   |   |-- siglip/              # Vision encoder for VLM / VLA
+|   |   |-- pointnet/            # Point cloud part segmentation
+|   |   |-- lanenet/             # Lane detection
+|   |   `-- paddle_ocr/          # OCR text detection and recognition
+|   |-- speech/                  # Speech model examples
+|   |   |-- asr/                 # Speech recognition
+|   |   `-- kws/                 # Keyword spotting
+|   `-- vla/                     # Embodied AI / robot policy
+|       `-- act/                 # Action Chunking Transformer
 |-- datasets/                    # Public datasets and sample data
 |-- docs/                        # Project specs and reference documentation
 |-- tools/                       # Conversion/build/utility tools
@@ -189,7 +206,7 @@ bash run.sh
 
 | Category | Model | Sample Directory | Supported Platforms |
 | :--- | :--- | :--- | :--- |
-| Vision Multi-task | Ultralytics YOLO (YOLOv5u / YOLOv8 / YOLOv10 / YOLO11 / YOLO12) | `samples/vision/ultralytics_yolo` | S100 / S100P |
+| Vision Multi-task | Ultralytics YOLO (YOLOv5u / YOLOv8 / YOLOv9 / YOLOv10 / YOLO11 / YOLO12) | `samples/vision/ultralytics_yolo` | S100 / S100P / S600 |
 | Vision Multi-task | YOLO26 | `samples/vision/ultralytics_yolo26` | S100 / S100P / S600 |
 | Object Detection | YOLOv5x | `samples/vision/yolov5` | S100 / S600 |
 | Object Detection | YOLO11 | `samples/vision/yolo11` | S100 / S600 |
@@ -226,7 +243,7 @@ bash run.sh
 
 | Category | Model | Sample Directory | Supported Platforms |
 | :--- | :--- | :--- | :--- |
-| Robot Policy | ACT (Action Chunking Transformer) | `samples/vla/act` | S100 |
+| Robot Policy | ACT (Action Chunking Transformer) | `samples/vla/act` | S100 / S600 |
 
 ## Shared Utilities (utils/)
 
